@@ -14,7 +14,4 @@ microbial genome.
    basecalling/index
    read_qc/index
    assembly/index
-   assembly_qc/index
-   polishing/index
-   annotation/index
 
