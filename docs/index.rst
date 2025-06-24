@@ -8,6 +8,7 @@ microbial genome.
 .. toctree::
    :maxdepth: 2
 
+   simplevm
    cli
    data
    basecalling/index
