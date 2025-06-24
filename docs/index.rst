@@ -1,4 +1,4 @@
-Welcome to the de.NBI Nanopore Training Course!
+Welcome to the de.NBI Long Read Training Course!
 ===============================================
 
 Welcome to the two-day nanopore training course. This tutorial will
@@ -7,7 +7,8 @@ microbial genome.
 
 .. toctree::
    :maxdepth: 2
-   
+
+   cli
    data
    basecalling/index
    read_qc/index
