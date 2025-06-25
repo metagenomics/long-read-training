@@ -9,47 +9,36 @@ Create a link in your home directory to the mounted volume::
 
   ln -s /mnt/ workdir 
 
-The tutorial dataset is located in our object store. We have also prepared some precomputed results.You can get both here (Group 1)::
+The tutorial dataset is located in our object store. We have also prepared some precomputed results.You can get both here::
 
   cd ~/workdir
-  wget https://openstack.cebitec.uni-bielefeld.de:8080/swift/v1/nanopore_course_data/Data_Group1.tar.gz
-  wget https://openstack.cebitec.uni-bielefeld.de:8080/swift/v1/nanopore_course_data/Results_Group1.tar.gz
-
-... and for Group 2::
-
-  cd ~/workdir
-  wget https://openstack.cebitec.uni-bielefeld.de:8080/swift/v1/nanopore_course_data/Data_Group2.tar.gz
-  wget https://openstack.cebitec.uni-bielefeld.de:8080/swift/v1/nanopore_course_data/Results_Group2.tar.gz
+  wget https://s3.bi.denbi.de/cmg/mgcourses/longread2025/Data.tar.gz
+  wget https://s3.bi.denbi.de/cmg/mgcourses/longread2025/Results.tar.gz
 
 Then, unpack the tar archive::
 
-  tar -xzvf Data_Group1.tar.gz
-  tar -xzvf Results_Group1.tar.gz
-
-  or
-  
-  tar -xzvf Data_Group2.tar.gz
-  tar -xzvf Results_Group2.tar.gz
+  tar -xzvf Data.tar.gz
+  tar -xzvf Results.tar.gz
 
 and remove the tar archives::
 
-  rm Data_Group1.tar.gz
-  rm Results_Group1.tar.gz
-  or
-  rm Data_Group2.tar.gz
-  rm Results_Group2.tar.gz
-  
+  rm Data.tar.gz
+  rm Results.tar.gz  
 
 Have a short look, on what is contained within the data directory::
 
-  ls -l ~/workdir/data/
-  -rw-r--r-- 1 ubuntu ubuntu 4372654 Aug 30 08:24 Reference.fna
-  drwxr-xr-x 2 ubuntu ubuntu   24576 Aug 30 08:24 fast5
-  drwxrwxr-x 2 ubuntu ubuntu    4096 Sep  5 07:23 fast5_small
-  drwxrwxr-x 2 ubuntu ubuntu    4096 Sep 12 08:01 fast5_tiny
-  drwxr-xr-x 2 ubuntu ubuntu    4096 Aug 30 08:36 illumina
 
-There are three folders with Nanopore fast5 data, a Reference genome for later comparisons and some illumina data.
+
+  ls -l ~/workdir/data/
+  -rw-r--r-- 1 ubuntu ubuntu   6849457 Aug 30  2019 Reference.fna  
+  drwxr-xr-x 2 ubuntu ubuntu     20480 Aug 30  2019 fast5
+  drwxrwxr-x 2 ubuntu ubuntu      4096 Sep  5  2019 fast5_small
+  drwxrwxr-x 2 ubuntu ubuntu      4096 Sep 12  2019 fast5_tiny
+  drwxr-xr-x 2 ubuntu ubuntu      4096 Aug 30  2019 illumina
+  -rw-rw-r-- 1 ubuntu ubuntu 117496419 Jun 24 10:28 pb_cov_20.fq.gz
+  -rw-rw-r-- 1 ubuntu ubuntu 293425053 Jun 24 10:27 pb_cov_50.fq.gz
+
+There are three folders with Nanopore fast5 data, a Reference genome for later comparison, some illumina data and simulated PacBio data.
 
 If you want to disable system beep sounds::
 
