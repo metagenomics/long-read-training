@@ -12,160 +12,140 @@ Let's have a look at the usage message for read_fast5_basecaller.py::
 
   dorado basecaller --help
   
-  : Guppy Basecalling Software, (C) Oxford Nanopore Technologies, Limited. Version 3.1.5+781ed57
-
-  Usage:
-
-  With config file:
-    guppy_basecaller -i <input path> -s <save path> -c <config file> [options]
-  With flowcell and kit name:
-    guppy_basecaller -i <input path> -s <save path> --flowcell <flowcell name>
-      --kit <kit name>
-  List supported flowcells and kits:
-    guppy_basecaller --print_workflows
-
-Beside the path of our fast5 files (-i), the basecaller requires an output path (-s) and a config file or the flowcell/kit combination. In order to get a list of possible flowcell/kit combinations and config files, we use::
-
-  guppy_basecaller --print_workflows
+  Usage: dorado [--help] [--verbose]... [--device VAR] [--models-directory VAR] [--bed-file VAR] [--recursive] [--read-ids VAR] [--max-reads VAR] [--resume-from VAR] [--min-qscore VAR] [--emit-moves] [--emit-fastq] [--emit-sam] [--output-dir VAR] [--reference VAR] [--mm2-opts VAR] [--modified-bases VAR...] [--modified-bases-models VAR] [--modified-bases-threshold VAR] [--modified-bases-batchsize VAR] [--kit-name VAR] [--sample-sheet VAR] [--barcode-both-ends] [--barcode-arrangement VAR] [--barcode-sequences VAR] [--primer-sequences VAR] [--no-trim] [--trim VAR] [--estimate-poly-a] [--poly-a-config VAR] [--batchsize VAR] [--chunksize VAR] [--overlap VAR] model data
   
-  Available flowcell + kit combinations are:
-  flowcell   kit        barcoding config_name
-  FLO-MIN107 SQK-DCS108           dna_r9.5_450bps
-  FLO-MIN107 SQK-DCS109           dna_r9.5_450bps
-  FLO-MIN107 SQK-LRK001           dna_r9.5_450bps
-  FLO-MIN107 SQK-LSK108           dna_r9.5_450bps
-  FLO-MIN107 SQK-LSK109           dna_r9.5_450bps
-  FLO-MIN107 SQK-LSK308           dna_r9.5_450bps
-  FLO-MIN107 SQK-LSK309           dna_r9.5_450bps
-  FLO-MIN107 SQK-LSK319           dna_r9.5_450bps
-  FLO-MIN107 SQK-LWP001           dna_r9.5_450bps
-  FLO-MIN107 SQK-PCS108           dna_r9.5_450bps
-  FLO-MIN107 SQK-PCS109           dna_r9.5_450bps
-  FLO-MIN107 SQK-PSK004           dna_r9.5_450bps
-  FLO-MIN107 SQK-RAD002           dna_r9.5_450bps
-  FLO-MIN107 SQK-RAD003           dna_r9.5_450bps
-  FLO-MIN107 SQK-RAD004           dna_r9.5_450bps
-  FLO-MIN107 SQK-RAS201           dna_r9.5_450bps
-  FLO-MIN107 SQK-RLI001           dna_r9.5_450bps
-  FLO-MIN107 VSK-VBK001           dna_r9.5_450bps
-  FLO-MIN107 VSK-VSK001           dna_r9.5_450bps
-  FLO-MIN107 VSK-VSK002           dna_r9.5_450bps
-  FLO-MIN107 SQK-LWB001 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-PBK004 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RAB201 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RAB204 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RBK001 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RBK004 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RLB001 included  dna_r9.5_450bps
-  FLO-MIN107 SQK-RPB004 included  dna_r9.5_450bps
-  FLO-MIN107 VSK-VMK001 included  dna_r9.5_450bps
-  FLO-MIN107 VSK-VMK002 included  dna_r9.5_450bps
-  FLO-FLG001 SQK-RNA001           rna_r9.4.1_70bps_hac
-  FLO-FLG001 SQK-RNA002           rna_r9.4.1_70bps_hac
-  FLO-MIN106 SQK-RNA001           rna_r9.4.1_70bps_hac
-  FLO-MIN106 SQK-RNA002           rna_r9.4.1_70bps_hac
-  FLO-MIN107 SQK-RNA001           rna_r9.4.1_70bps_hac
-  FLO-MIN107 SQK-RNA002           rna_r9.4.1_70bps_hac
-  FLO-PRO001 SQK-LSK109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO001 SQK-LSK109-XL          dna_r9.4.1_450bps_hac_prom
-  FLO-PRO001 SQK-DCS109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO001 SQK-PCS109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO001 SQK-PCB109 included  dna_r9.4.1_450bps_hac_prom
-  FLO-PRO002 SQK-LSK109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO002 SQK-LSK109-XL          dna_r9.4.1_450bps_hac_prom
-  FLO-PRO002 SQK-DCS109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO002 SQK-PCS109           dna_r9.4.1_450bps_hac_prom
-  FLO-PRO002 SQK-PCB109 included  dna_r9.4.1_450bps_hac_prom
-  FLO-FLG001 SQK-CAS109           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-DCS108           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-DCS109           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LRK001           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LSK108           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LSK109           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LSK109-XL          dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LWP001           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-PCS108           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-PCS109           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-PSK004           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAD002           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAD003           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAD004           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAS201           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RLI001           dna_r9.4.1_450bps_hac
-  FLO-FLG001 VSK-VBK001           dna_r9.4.1_450bps_hac
-  FLO-FLG001 VSK-VSK001           dna_r9.4.1_450bps_hac
-  FLO-FLG001 VSK-VSK002           dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-16S024 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-PCB109 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RBK001 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RBK004 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RLB001 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-LWB001 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-PBK004 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAB201 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RAB204 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 SQK-RPB004 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 VSK-VMK001 included  dna_r9.4.1_450bps_hac
-  FLO-FLG001 VSK-VMK002 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-CAS109           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-DCS108           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-DCS109           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LRK001           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LSK108           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LSK109           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LSK109-XL          dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LWP001           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-PCS108           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-PCS109           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-PSK004           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAD002           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAD003           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAD004           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAS201           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RLI001           dna_r9.4.1_450bps_hac
-  FLO-MIN106 VSK-VBK001           dna_r9.4.1_450bps_hac
-  FLO-MIN106 VSK-VSK001           dna_r9.4.1_450bps_hac
-  FLO-MIN106 VSK-VSK002           dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-16S024 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-PCB109 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RBK001 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RBK004 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RLB001 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-LWB001 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-PBK004 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAB201 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RAB204 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 SQK-RPB004 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 VSK-VMK001 included  dna_r9.4.1_450bps_hac
-  FLO-MIN106 VSK-VMK002 included  dna_r9.4.1_450bps_hac
-  FLO-PRO001 SQK-RNA002           rna_r9.4.1_70bps_hac_prom
-  FLO-PRO002 SQK-RNA002           rna_r9.4.1_70bps_hac_prom
+  Positional arguments:
+    model                       Model selection {fast,hac,sup}@v{version} for automatic model selection including modbases, or path to existing model directory. 
+    data                        The data directory or file (POD5/FAST5 format). 
+  
+  Optional arguments:
+    -h, --help                  shows help message and exits 
+    -v, --verbose               [may be repeated]
+    -x, --device                Specify CPU or GPU device: 'auto', 'cpu', 'cuda:all' or 'cuda:<device_id>[,<device_id>...]'. Specifying 'auto' will choose either 'cpu', 'metal' or 'cuda:all' depending on the presence of a GPU device. [nargs=0..1] [default: "auto"]
+    --models-directory          Optional directory to search for existing models or download new models into. [nargs=0..1] [default: "."]
+    --bed-file                  Optional bed-file. If specified, overlaps between the alignments and bed-file entries will be counted, and recorded in BAM output using the 'bh' read tag. [nargs=0..1] [default: ""]
+  
+  Input data arguments (detailed usage):
+    -r, --recursive             Recursively scan through directories to load FAST5 and POD5 files. 
+    -l, --read-ids              A file with a newline-delimited list of reads to basecall. If not provided, all reads will be basecalled. [nargs=0..1] [default: ""]
+    -n, --max-reads             Limit the number of reads to be basecalled. [nargs=0..1] [default: 0]
+    --resume-from               Resume basecalling from the given HTS file. Fully written read records are not processed again. [nargs=0..1] [default: ""]
+  
+  Output arguments (detailed usage):
+    --min-qscore                Discard reads with mean Q-score below this threshold. [nargs=0..1] [default: 0]
+    --emit-moves                Write the move table to the 'mv' tag. 
+    --emit-fastq                Output in fastq format. 
+    --emit-sam                  Output in SAM format. 
+    -o, --output-dir            Optional output folder, if specified output will be written to a calls file (calls_<timestamp>.sam|.bam|.fastq) in the given folder. 
+  
+  Alignment arguments (detailed usage):
+    --reference                 Path to reference for alignment. [nargs=0..1] [default: ""]
+    --mm2-opts                  Optional minimap2 options string. For multiple arguments surround with double quotes. 
+  
+  Modified model arguments (detailed usage):
+    --modified-bases            A space separated list of modified base codes. Choose from: pseU, m6A_DRACH, m6A, 6mA, m5C, 5mC, 5mCG_5hmCG, 5mCG, 5mC_5hmC, inosine_m6A, 4mC_5mC. [nargs: 1 or more] 
+    --modified-bases-models     A comma separated list of modified base model paths. [nargs=0..1] [default: ""]
+    --modified-bases-threshold  The minimum predicted methylation probability for a modified base to be emitted in an all-context model, [0, 1]. 
+    --modified-bases-batchsize  The modified base models batch size. 
+  
+  Barcoding arguments (detailed usage):
+    --kit-name                  Enable barcoding with the provided kit name. Choose from: EXP-NBD103 EXP-NBD104 EXP-NBD114 EXP-NBD114-24 EXP-NBD196 EXP-PBC001 EXP-PBC096 SQK-16S024 SQK-16S114-24 SQK-LWB001 SQK-MAB114-24 SQK-MLK111-96-XL SQK-MLK114-96-XL SQK-NBD111-24 SQK-NBD111-96 SQK-NBD114-24 SQK-NBD114-96 SQK-PBK004 SQK-PCB109 SQK-PCB110 SQK-PCB111-24 SQK-PCB114-24 SQK-RAB201 SQK-RAB204 SQK-RBK001 SQK-RBK004 SQK-RBK110-96 SQK-RBK111-24 SQK-RBK111-96 SQK-RBK114-24 SQK-RBK114-96 SQK-RLB001 SQK-RPB004 SQK-RPB114-24 TWIST-16-UDI TWIST-96A-UDI VSK-PTC001 VSK-VMK001 VSK-VMK004 VSK-VPS001. [nargs=0..1] [default: ""]
+    --sample-sheet              Path to the sample sheet to use. [nargs=0..1] [default: ""]
+    --barcode-both-ends         Require both ends of a read to be barcoded for a double ended barcode. 
+    --barcode-arrangement       Path to file with custom barcode arrangement. Requires --kit-name. 
+    --barcode-sequences         Path to file with custom barcode sequences. Requires --kit-name and --barcode-arrangement. 
+    --primer-sequences          Path to file with custom primer sequences. 
+  
+  Trimming arguments (detailed usage):
+    --no-trim                   Skip trimming of barcodes, adapters, and primers. If option is not chosen, trimming of all three is enabled. 
+    --trim                      Specify what to trim. Options are 'none', 'all', and 'adapters'. The default behaviour is to trim all detected adapters, primers, and barcodes. Choose 'adapters' to just trim adapters. The 'none' choice is equivelent to using --no-trim. Note that this only applies to DNA. RNA adapters are always trimmed. [nargs=0..1] [default: ""]
+  
+  Poly(A) arguments (detailed usage):
+    --estimate-poly-a           Estimate poly(A)/poly(T) tail lengths (beta feature). Primarily meant for cDNA and dRNA use cases. 
+    --poly-a-config             Configuration file for poly(A) estimation to change default behaviours [nargs=0..1] [default: ""]
+  
+  Advanced arguments (detailed usage):
+    -b, --batchsize             The number of chunks in a batch. If 0 an optimal batchsize will be selected. [nargs=0..1] [default: 0]
+    -c, --chunksize             The number of samples in a chunk. [nargs=0..1] [default: 10000]
+    --overlap                   The number of samples overlapping neighbouring chunks. [nargs=0..1] [default: 500]
+  
+
+Beside the path of our fast5 files (-i), the basecaller requires an output path (-s) and a model file. In order to get a list of possible models, we use::
+
+  dorado download --list
+
+We are interested in the simplex models only::
+
+[2025-06-25 19:15:34.532] [info] > simplex models
+[2025-06-25 19:15:34.532] [info]  - dna_r9.4.1_e8_fast@v3.4
+[2025-06-25 19:15:34.532] [info]  - dna_r9.4.1_e8_hac@v3.3
+[2025-06-25 19:15:34.532] [info]  - dna_r9.4.1_e8_sup@v3.3
+[2025-06-25 19:15:34.532] [info]  - dna_r9.4.1_e8_sup@v3.6
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_fast@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_hac@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_sup@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v3.5.2
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_fast@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_hac@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_sup@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_fast@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_hac@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_260bps_sup@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.1.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v4.2.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v4.2.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v4.3.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v4.3.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.3.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_fast@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_hac@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - dna_r10.4.1_e8.2_apk_sup@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - rna002_70bps_fast@v3
+[2025-06-25 19:15:34.532] [info]  - rna002_70bps_hac@v3
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_fast@v3.0.1
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_hac@v3.0.1
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_sup@v3.0.1
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_fast@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_hac@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_sup@v5.0.0
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_fast@v5.1.0
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_hac@v5.1.0
+[2025-06-25 19:15:34.532] [info]  - rna004_130bps_sup@v5.1.0
 
 
-Our dataset was generated using the FLO-MIN106 flowcell, and the LSK109 kit, so we can use the dna_r9.4.1_450bps_hac model.
+Our dataset was generated using an r9.4.1 flowcell, so we use the dna_r9.4.1_e8_hac@v3.3 model (hac = high accuracy).
+
+We download the model with::
+
+  dorado download --model dna_r9.4.1_e8_hac@v3.3
+
 
 We need to specify the following options:
 
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
 | What?                                                                  | parameter               | Our value                      |
 +========================================================================+=========================+================================+
-| The config file for our flowcell/kit combination                       | -c                      | dna_r9.4.1_450bps_hac_model.cfg|
+| The model file for our flowcell/kit combination                        | positional 1            | dna_r9.4.1_e8_hac@v3.3         |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+ 
-| Compress the fastq output                                              | --compress_fastq                                         |
+| fastq output                                                           | --emit-fastq                                             |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
-| The full path to the directory where the raw read files are located    | -i                      | ~/workdir/data/fast5_small     |
+| The full path to the directory where the raw read files are located    | positional 2            | ~/workdir/data/fast5_small     |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
-| The full path to the directory where the basecalled files will be saved| -s                      | ~/workdir/basecall_small/      |
+| The full path to the directory where the basecalled files will be saved| -o                      | ~/workdir/basecall_small/      |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
-| How many worker threads you are using                                  | --cpu_threads_per_caller| 14                             |
-+------------------------------------------------------------------------+-------------------------+--------------------------------+
-| Number of parallel basecallers to create                               | --num_callers           | 1                              |
-+------------------------------------------------------------------------+-------------------------+--------------------------------+
-
 
 Our complete command line is::
 
-  guppy_basecaller --compress_fastq -i ~/workdir/data/fast5_tiny/ -s ~/workdir/basecall_tiny/ --cpu_threads_per_caller 14 --num_callers 1 -c dna_r9.4.1_450bps_hac.cfg
+  dorado basecaller dna_r9.4.1_e8_hac@v3.3/ data/fast5_small --emit-fastq -o basecall_small
  
 References
 ^^^^^^^^^^
