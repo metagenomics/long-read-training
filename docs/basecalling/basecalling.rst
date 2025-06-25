@@ -1,19 +1,16 @@
-Basecalling with Guppy
+Basecalling with dorado
 -------------------------
 
+Dorado is the newest version of the ONT basecaller, it replaced guppy which was the basecaller for quite a long time. Dorado is capable of multiple steps: demultiplexing, adapter removal, basecalling calling of modified bases (methylation), and other things. Look up the comprehensive documentation for further information.
 
-Guppy is a data processing toolkit that contains the Oxford Nanopore Technologies' basecalling algorithms, and several bioinformatic post-processing features. It is provided as binaries to run on Windows, OS X and Linux platforms, as well as being integrated with MinKNOW, the Oxford Nanopore device control software.
-
-Early downstream analysis components such as barcoding/demultiplexing, adapter trimming and alignment are contained within Guppy. Furthermore, Guppy now performs modified basecalling (5mC, 6mA and CpG) from the raw signal data, producing an additional FAST5 file of modified base probabilities.
 
 The command we are using for for basecalling with Guppy is::
 
-  guppy_basecaller
+  dorado basecaller
   
-
 Let's have a look at the usage message for read_fast5_basecaller.py::
 
-  guppy_basecaller --help
+  dorado basecaller --help
   
   : Guppy Basecalling Software, (C) Oxford Nanopore Technologies, Limited. Version 3.1.5+781ed57
 
@@ -172,6 +169,5 @@ Our complete command line is::
  
 References
 ^^^^^^^^^^
-
-**guppy** https://nanoporetech.com/
+**dorado** https://github.com/nanoporetech/dorado
 
