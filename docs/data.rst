@@ -1,18 +1,13 @@
 The Tutorial Data Set
 ================================
 
-The first thing you need to do is to connect to your virtual machine with the X2Go Client. If you are working with your laptop and haven't installed it yet - you can get it here:
-https://wiki.x2go.org/doku.php/download:start
-
-Enter the IP of your virtual machine, the port, the username "ubuntu" and select your ssh key. When you have successfully connected to your machine, open a terminal.
-
 As you have started the VM with a volume attached, this volume needs to be given to the ubuntu user for easy access::
 
-  sudo chown ubuntu:ubuntu /mnt/volume/
+  sudo chown ubuntu:ubuntu /mnt/
   
 Create a link in your home directory to the mounted volume::
 
-  ln -s /mnt/volume/ workdir 
+  ln -s /mnt/ workdir 
 
 The tutorial dataset is located in our object store. We have also prepared some precomputed results.You can get both here (Group 1)::
 
