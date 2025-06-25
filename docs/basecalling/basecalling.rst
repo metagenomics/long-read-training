@@ -8,7 +8,7 @@ The command we are using for for basecalling with Guppy is::
 
   dorado basecaller
   
-Let's have a look at the usage message for read_fast5_basecaller.py::
+Let's have a look at the usage message for `dorado basecaller`::
 
   dorado basecaller --help
   
