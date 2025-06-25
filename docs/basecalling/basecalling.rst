@@ -138,9 +138,9 @@ We need to specify the following options:
 +------------------------------------------------------------------------+-------------------------+--------------------------------+ 
 | fastq output                                                           | --emit-fastq                                             |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
-| The full path to the directory where the raw read files are located    | positional 2            | ~/workdir/data/fast5_small     |
+| The full path to the directory where the raw read files are located    | positional 2            | ~/workdir/data/fast5_tiny      |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
-| The full path to the directory where the basecalled files will be saved| -o                      | ~/workdir/basecall_small/      |
+| The full path to the directory where the basecalled files will be saved| -o                      | ~/workdir/basecall_tiny/       |
 +------------------------------------------------------------------------+-------------------------+--------------------------------+
 
 Our complete command line is::
