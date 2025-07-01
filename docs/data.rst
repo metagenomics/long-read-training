@@ -7,6 +7,7 @@ As you have started the VM with a volume attached, this volume needs to be given
   
 Create a link in your home directory to the mounted volume::
 
+  cd
   ln -s /mnt/ workdir 
 
 The tutorial dataset is located in our object store. We have also prepared some precomputed results.You can get both here::
