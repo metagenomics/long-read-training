@@ -126,6 +126,7 @@ Our dataset was generated using an r9.4.1 flowcell, so we use the dna_r9.4.1_e8_
 
 We download the model with::
 
+  cd ~/workdir
   dorado download --model dna_r9.4.1_e8_hac@v3.3
 
 
@@ -145,8 +146,11 @@ We need to specify the following options:
 
 Our complete command line is::
 
+  cd ~/workdir
   dorado basecaller dna_r9.4.1_e8_hac@v3.3/ data/fast5_small --emit-fastq -o basecall_small
- 
+
+
+
 References
 ^^^^^^^^^^
 **dorado** https://github.com/nanoporetech/dorado
