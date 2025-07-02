@@ -11,7 +11,7 @@ The directory contains the following output::
 
 So we have one fastq file in our directory. IF there are several fastq files, we should merge them  into a single file and zip them::
 
-  cat ~/workdir/basecall_tiny/*.fastq | gzip > ~/workdir/basecall_tiny/basecall_tiny.fastq.gz
+  cat ~/workdir/basecall_tiny/*.fastq | gzip > ~/workdir/basecall_tiny/basecall.fastq.gz
 
 In order to get the number of reads in our fastq file, we can count the number of lines and divide by 4::
 
