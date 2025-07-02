@@ -1,76 +1,88 @@
-Assembly with canu
+Assembly with flye
 ==================
-Canu is a fork of the Celera Assembler, designed for high-noise single-molecule sequencing (such as the PacBio RS II/Sequel or Oxford Nanopore MinION). Documentation can be found here:
-http://canu.readthedocs.io/en/latest/
 
-Canu is a hierarchical assembly pipeline which runs in four steps:
-- Detect overlaps in high-noise sequences using MHAP
-- Generate corrected sequence consensus
-- Trim corrected sequences
-- Assemble trimmed corrected sequences
-
+Flye is a de novo assembler for single-molecule sequencing reads, such as those produced by PacBio and Oxford Nanopore Technologies. It is designed for a wide range of datasets, from small bacterial projects to large mammalian-scale assemblies. The package represents a complete pipeline: it takes raw PacBio / ONT reads as input and outputs polished contigs. Flye also has a special mode for metagenome assembly.
 Get a usage message of canu on how to use the assembler::
 
-  canu --help
+  flye --help
 
-  usage:   canu [-version] [-citation] \
-                [-correct | -trim | -assemble | -trim-assemble] \
-                [-s <assembly-specifications-file>] \
-                 -p <assembly-prefix> \
-                 -d <assembly-directory> \
-                 genomeSize=<number>[g|m|k] \
-                [other-options] \
-                [-pacbio-raw |
-                 -pacbio-corrected |
-                 -nanopore-raw |
-                 -nanopore-corrected] file1 file2 ...
+  usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
+	     --nano-corr | --nano-hq ) file1 [file_2 ...]
+	     --out-dir PATH
 
-  example: canu -d run1 -p godzilla genomeSize=1g -nanopore-raw reads/*.fasta.gz 
+	     [--genome-size SIZE] [--threads int] [--iterations int]
+	     [--meta] [--polish-target] [--min-overlap SIZE]
+	     [--keep-haplotypes] [--debug] [--version] [--help] 
+	     [--scaffold] [--resume] [--resume-from] [--stop-after] 
+	     [--read-error float] [--extra-params] 
+	     [--deterministic]
 
+Assembly of long reads with repeat graphs
 
-    To restrict canu to only a specific stage, use:
-      -correct       - generate corrected reads
-      -trim          - generate trimmed reads
-      -assemble      - generate an assembly
-      -trim-assemble - generate trimmed reads and then assemble them
+options:
+  -h, --help            show this help message and exit
+  --pacbio-raw path [path ...]
+                        PacBio regular CLR reads (<20% error)
+  --pacbio-corr path [path ...]
+                        PacBio reads that were corrected with other methods (<3% error)
+  --pacbio-hifi path [path ...]
+                        PacBio HiFi reads (<1% error)
+  --nano-raw path [path ...]
+                        ONT reads with odler chemistries, pre R9 Guppy5 (10-20% error)
+  --nano-corr path [path ...]
+                        ONT reads that were corrected with other methods (<3% error)
+  --nano-hq path [path ...]
+                        ONT R10 reads, aka Q20 (<3% error). For R9 Guppy5+, increase --read-error slightly
+  --subassemblies path [path ...]
+                        [deprecated] high-quality contigs input
+  -g size, --genome-size size
+                        estimated genome size (for example, 5m or 2.6g)
+  -o path, --out-dir path
+                        Output directory
+  -t int, --threads int
+                        number of parallel threads [1]
+  -i int, --iterations int
+                        number of polishing iterations [1]
+  -m int, --min-overlap int
+                        minimum overlap between reads [auto]
+  --asm-coverage int    reduced coverage for initial disjointig assembly [not set]
+  --hifi-error float    [deprecated] same as --read-error
+  --read-error float    adjust parameters for given read error rate (as fraction e.g. 0.03)
+  --extra-params extra_params
+                        extra configuration parameters list (comma-separated)
+  --plasmids            unused (retained for backward compatibility)
+  --meta                metagenome / uneven coverage mode
+  --keep-haplotypes     do not collapse alternative haplotypes
+  --no-alt-contigs      do not output contigs representing alternative haplotypes
+  --scaffold            enable scaffolding using graph [disabled by default]
+  --trestle             [deprecated] enable Trestle [disabled by default]
+  --polish-target path  run polisher on the target sequence
+  --resume              resume from the last completed stage
+  --resume-from stage_name
+                        resume from a custom stage
+  --stop-after stage_name
+                        stop after the specified stage completed
+  --debug               enable debug output
+  -v, --version         show program's version number and exit
+  --deterministic       perform disjointig assembly single-threaded
 
-    The assembly is computed in the -d <assembly-directory>, with output files named
-    using the -p <assembly-prefix>.  This directory is created if needed.  It is not
-    possible to run multiple assemblies in the same directory.
+Input reads can be in FASTA or FASTQ format, uncompressed
+or compressed with gz. Currently, PacBio (CLR, HiFi, corrected)
+and ONT reads (regular, HQ, corrected) are supported. Expected error rates are
+<15% for PB CLR/regular ONT; <3% for ONT R10, <3% for corrected, and <1% for HiFi. Note that Flye
+was primarily developed to run on uncorrected reads. You may specify multiple
+files with reads (separated by spaces). Mixing different read
+types is not yet supported. The --meta option enables the mode
+for metagenome/uneven coverage assembly.
 
-    The genome size should be your best guess of the haploid genome size of what is being
-    assembled.  It is used primarily to estimate coverage in reads, NOT as the desired
-    assembly size.  Fractional values are allowed: '4.7m' equals '4700k' equals '4700000'
+To reduce memory consumption for large genome assemblies,
+you can use a subset of the longest reads for initial disjointig
+assembly by specifying --asm-coverage and --genome-size options. Typically,
+40x coverage is enough to produce good disjointigs.
 
-    Some common options:
-      useGrid=string
-        - Run under grid control (true), locally (false), or set up for grid control
-          but don't submit any jobs (remote)
-      rawErrorRate=fraction-error
-        - The allowed difference in an overlap between two raw uncorrected reads.  For lower
-          quality reads, use a higher number.  The defaults are 0.300 for PacBio reads and
-          0.500 for Nanopore reads.
-      correctedErrorRate=fraction-error
-        - The allowed difference in an overlap between two corrected reads.  Assemblies of
-          low coverage or data with biological differences will benefit from a slight increase
-          in this.  Defaults are 0.045 for PacBio reads and 0.144 for Nanopore reads.
-      gridOptions=string
-        - Pass string to the command used to submit jobs to the grid.  Can be used to set
-          maximum run time limits.  Should NOT be used to set memory limits; Canu will do
-          that for you.
-      minReadLength=number
-        - Ignore reads shorter than 'number' bases long.  Default: 1000.
-      minOverlapLength=number
-        - Ignore read-to-read overlaps shorter than 'number' bases long.  Default: 500.
-    A full list of options can be printed with '-options'.  All options can be supplied in
-    an optional sepc file with the -s option.
+You can run Flye polisher as a standalone tool using
+--polish-target option.
 
-    Reads can be either FASTA or FASTQ format, uncompressed, or compressed with gz, bz2 or xz.
-    Reads are specified by the technology they were generated with:
-      -pacbio-raw         <files>
-      -pacbio-corrected   <files>
-      -nanopore-raw       <files>
-      -nanopore-corrected <files>
 
 We will run the assembly on the small dataset, to save time. The assembly for the complete dataset will take about one hour.
 We will perform the assembly in two steps:
