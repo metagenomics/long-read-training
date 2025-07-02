@@ -5,6 +5,7 @@ Flye is a de novo assembler for single-molecule sequencing reads, such as those 
 Get a usage message of canu on how to use the assembler::
 
 flye --help
+
 usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
 	     --nano-corr | --nano-hq ) file1 [file_2 ...]
 	     --out-dir PATH
