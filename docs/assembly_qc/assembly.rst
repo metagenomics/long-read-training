@@ -111,5 +111,5 @@ and have a quick look on the number of contigs::
 References
 ^^^^^^^^^^
 
-**Canu** https://github.com/marbl/canu
+**Flye** https://github.com/mikolmogorov/Flye
   
