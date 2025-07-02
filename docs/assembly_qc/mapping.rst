@@ -47,8 +47,8 @@ file. After that we need to sort the alignments in the BAM file by starting posi
 and index the file for fast access (``samtools index``)::
 
   samtools view -bT ~/workdir/data/Reference.fna flye_1st_Assembly.sam > flye_1st_Assembly.bam
-  samtools sort -o canu_1st_Assembly_sorted.bam flye_1st_Assembly.bam
-  samtools index canu_1st_Assembly_sorted.bam
+  samtools sort -o flye_1st_Assembly_sorted.bam flye_1st_Assembly.bam
+  samtools index flye_1st_Assembly_sorted.bam
   
 To look at the BAM file use::
 
