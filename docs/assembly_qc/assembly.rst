@@ -91,7 +91,7 @@ We will perform the assembly as follows::
 
 After that is done, inspect the results. We can get a quick view on the number of generated contigs with::
 
-  grep '>' ~/workdir/assembly_small/assembly.contigs.fasta
+  grep '>' ~/workdir/assembly_small/assembly.fasta
 
 **If there is time**, we start the actual assembly with all data now::
 
@@ -103,7 +103,7 @@ After that is done, inspect the results. We can get a quick view on the number o
 
 and have a quick look on the number of contigs::
 
-  grep '>' ~/workdir/assembly/assembly.contigs.fasta
+  grep '>' ~/workdir/assembly/assembly.fasta
 
 
 
