@@ -147,7 +147,7 @@ We need to specify the following options:
 Our complete command line is::
 
   cd ~/workdir
-  dorado basecaller dna_r9.4.1_e8_hac@v3.3/ data/fast5_small --emit-fastq -o basecall_small
+  dorado basecaller dna_r9.4.1_e8_hac@v3.3/ data/fast5_tiny --emit-fastq -o basecall_tiny
 
 
 
