@@ -27,7 +27,7 @@ our assembly to it. This is done by the using the command ``lastdb``::
   
 Now that we have an index, we can map the assembly to the reference::
 
-  lastal Reference.db ~/workdir/assembly/assembly.contigs.fasta > canu_1st_Assembly.maf
+  lastal Reference.db ~/workdir/assembly/assembly.fasta > flye_1st_Assembly.maf
   
 ``lastal`` produces output in `MAF format
 <http://genome.ucsc.edu/FAQ/FAQformat.html#format5>`_ by default. As we are going to
@@ -35,7 +35,7 @@ inspect the alignment in a genome viewer, we have to convert this into a sorted 
 LAST provides the script `maf-convert <http://last.cbrc.jp/doc/maf-convert.html>`_ 
 to convert MAF to different other formats::
 
-  maf-convert sam canu_1st_Assembly.maf > canu_1st_Assembly.sam
+  maf-convert sam flye_1st_Assembly.maf > flye_1st_Assembly.sam
 
 SAM and BAM files can be viewed and manipulated with `SAMtools <http://www.htslib.org/>`_. 
 Let's first build an index for the FASTA file of the reference sequence::
@@ -46,13 +46,13 @@ Now we can convert the SAM file into the binary BAM format and add an appropriat
 file. After that we need to sort the alignments in the BAM file by starting position (``samtools sort``)
 and index the file for fast access (``samtools index``)::
 
-  samtools view -bT ~/workdir/data/Reference.fna canu_1st_Assembly.sam > canu_1st_Assembly.bam
-  samtools sort -o canu_1st_Assembly_sorted.bam canu_1st_Assembly.bam
+  samtools view -bT ~/workdir/data/Reference.fna flye_1st_Assembly.sam > flye_1st_Assembly.bam
+  samtools sort -o canu_1st_Assembly_sorted.bam flye_1st_Assembly.bam
   samtools index canu_1st_Assembly_sorted.bam
   
 To look at the BAM file use::
 
-  samtools view canu_1st_Assembly_sorted.bam | less
+  samtools view flye_1st_Assembly_sorted.bam | less
   
 We will use a genome browser to look at the mappings. For this, you have to change java version to java 8::
 
