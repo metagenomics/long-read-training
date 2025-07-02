@@ -99,7 +99,7 @@ After that is done, inspect the results. We can get a quick view on the number o
 
 **Otherwise**, copy the precomputed assembly with the complete dataset into your working directory::
 
-  cp -r ~/workdir/results/assembly/ ~/workdir/
+  cp -r ~/workdir/results/assembly_new/ ~/workdir/
 
 and have a quick look on the number of contigs::
 
