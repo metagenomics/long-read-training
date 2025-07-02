@@ -54,11 +54,7 @@ To look at the BAM file use::
 
   samtools view flye_1st_Assembly_sorted.bam | less
   
-We will use a genome browser to look at the mappings. For this, you have to change java version to java 8::
-
-  sudo update-alternatives --config java
-
-Choose java 8. Then start IGV::
+We will use a genome browser to look at the mappings. Start IGV::
 
   igv
   
