@@ -85,7 +85,7 @@ Get a usage message of canu on how to use the assembler::
 
 
 We will run the assembly on the small dataset, to save time. The assembly for the complete dataset will take about one hour.
-We will perform the assembly as follows:
+We will perform the assembly as follows::
 
   flye --nano-raw basecall_small/basecall.fastq.gz --out-dir assembly_small --threads 14 --genome-size 2m
 
