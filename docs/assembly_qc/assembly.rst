@@ -4,9 +4,8 @@ Assembly with flye
 Flye is a de novo assembler for single-molecule sequencing reads, such as those produced by PacBio and Oxford Nanopore Technologies. It is designed for a wide range of datasets, from small bacterial projects to large mammalian-scale assemblies. The package represents a complete pipeline: it takes raw PacBio / ONT reads as input and outputs polished contigs. Flye also has a special mode for metagenome assembly.
 Get a usage message of canu on how to use the assembler::
 
-  flye --help
-
-  usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
+flye --help
+usage: flye (--pacbio-raw | --pacbio-corr | --pacbio-hifi | --nano-raw |
 	     --nano-corr | --nano-hq ) file1 [file_2 ...]
 	     --out-dir PATH
 
