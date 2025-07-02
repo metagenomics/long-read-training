@@ -9,10 +9,10 @@ The directory contains the following output::
   -rw-rw-r-- 1 ubuntu ubuntu 4988554 Jun 25 19:45 calls_2025-06-25_T19-24-43.fastq
 
 
-So we have one fastq file in our directory - since we started with one fast5 file. Ususally, we should merge all resulting fastq files into a single file::
+So we have one fastq file in our directory. IF there are several fastq files, we should merge them  into a single file and zip them::
 
-  cat ~/workdir/basecall_tiny/*.fastq > ~/workdir/basecall_tiny/basecall.fastq
+  cat ~/workdir/basecall_tiny/*.fastq | gzip > ~/workdir/basecall_tiny/basecall_tiny.fastq
 
 In order to get the number of reads in our fastq file, we can count the number of lines and divide by 4::
 
-  cat ~/workdir/basecall_tiny/basecall.fastq | wc -l | awk '{print $1/4}'
+  cat ~/workdir/basecall_tiny/basecall_tiny.fastq | wc -l | awk '{print $1/4}'
