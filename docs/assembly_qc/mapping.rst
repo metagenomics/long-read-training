@@ -2,9 +2,7 @@ Quality control by mapping
 ==========================
 
 In this part of the tutorial we will look at the assemblies by mapping
-the contigs of our first assembly to the reference genome using minimap2. 
-
-
+the contigs of our first assembly to the reference genome using minimap2::
 
   cd ~/workdir/assembly/
   minimap2 -a  ../data/Reference.fna assembly.fasta > assemblytoref.sam
