@@ -16,7 +16,25 @@ Then we are mapping all reads to the contig. Note that we are shortening the pro
   
   samtools index ~/workdir/illumina_mapping/mapping.sorted.bam
 
+  minimap2 -a  data/Reference.fna pilon/pilon_round4
+
+We will use a genome browser to look at the mappings (to get an impression on our assembly quality). Start IGV::
+
+  igv
+  
+  
+Now let's look at the mapped contigs:
+
+1. Load the reference genome into IGV. Use the menu ``Genomes->Load Genome from File...`` 
+2. Load the BAM file into IGV. Use menu ``File->Load from File...`` 
+
+
 References
 ^^^^^^^^^^
 
 **BWA** http://bio-bwa.sourceforge.net/
+
+**samtools** http://www.htslib.org
+
+**IGV** http://www.broadinstitute.org/igv/
+
