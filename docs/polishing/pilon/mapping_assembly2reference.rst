@@ -10,7 +10,6 @@ convert the output to SAM and finally to BAM format::
 
   cd ~/workdir/pilon
   minimap2 -a  data/Reference.fna pilon/pilon_round4.fasta > pilon4toref.sam
-  more pilon4toref.sam 
   samtools view -b  pilon4toref.sam > pilon4toref.bam
   samtools sort pilon4toref.bam > pilon4toref.sorted.bam
   samtools index pilon4toref.sorted.bam 
@@ -35,7 +34,7 @@ Now let's look at the mapped contigs:
 References
 ^^^^^^^^^^
 
-**LAST** http://last.cbrc.jp/
+**minimap2** https://github.com/lh3/minimap2
 
 **samtools** http://www.htslib.org
 
