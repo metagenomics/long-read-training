@@ -5,11 +5,10 @@ Excercise 1.1: Directory structure
 ----------------------------------
 
 Tasks:
-1. Navigate to your home directory
-2. Create a new directory called "testdir" inside your home directory
-3. navigate into the "testdir" directory
-4. Create a new file called "example.txt" inside the "testdir" directory
-
+  1. Navigate to your home directory
+  2. Create a new directory called "testdir" inside your home directory
+  3. navigate into the "testdir" directory
+  4. Create a new file called "example.txt" inside the "testdir" directory
 
 Solution:
 
