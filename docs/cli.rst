@@ -24,6 +24,32 @@ Solution:
    </details>
 
 
+Excercise 1.2: Directory structure
+----------------------------------
+
+Tasks:
+  1. Use the ls command to display the  file "example.txt" file using an absolute path
+  2. Use the ls command to display the  file "example.txt" file using a relative path
+  3. Go one directory up (to your home directory) Use the ls command to display the  file "example.txt" using a relative path
+
+
+Solution:
+
+.. raw:: html
+
+   <details>
+   <pre>
+   ls /home/$USER/testdir/example.txt
+
+   cd testdir
+   ls example.txt
+
+   cd ..
+   ls testdir/example.txt
+
+   </pre>
+   </details>
+
 
 
 Excercise 1: Basic File Operations
