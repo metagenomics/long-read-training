@@ -51,8 +51,37 @@ Solution:
    </details>
 
 
+Excercise 2: Tab completion
+----------------------------------
 
-Excercise 1: Basic File Operations
+Tasks:
+  1. Navigate to your home directory
+  2. Create a new folder “testfolder” and a file “example.txt” in it
+  3. go to the root folder
+  4. Use tab completion to cd to the folder “testfolder” inside you home directory
+  5. Use tab completion in the testfolder to ls -l the file “example.txt”
+
+Solution:
+
+.. raw:: html
+
+   <details>
+   <pre>
+   cd
+
+   mkdir testfolder
+
+   cd testfoldertouch example.txt
+
+   cd / 
+
+   use tab completion...
+ 
+   </pre>
+   </details>
+
+
+Excercise 3: Basic File Operations
 ----------------------------------
 
 Tasks:
@@ -63,6 +92,7 @@ Tasks:
  5. Delete ‘test.txt’ (in your home)  
  6. Change to ‘tutorial’ and rename ‘test.txt’ to ‘file.txt’ and verify 
  7. Remove the directory ‘tutorial’ and its contents 
+ 8. Remove the directories `testfolder` and `testdir` and its contents
 
 Solution:
 
@@ -82,10 +112,11 @@ Solution:
    rm file.txt
    cd ..
    rmdir tutorial
+   rmdir testfolder testdir
    </pre>
    </details>
 
-Excercise 2: Links
+Excercise 4: Links
 ------------------
 Tasks:
  1. change to /mnt/ 
@@ -109,7 +140,7 @@ Solution:
    </pre>
    </details>
 
-Excercise 3: Display File Content
+Excercise 5: Display File Content
 ---------------------------------
 
 Before you can do the next excercise, you need to donwload the
@@ -139,7 +170,7 @@ Solution:
    </pre>
    </details>
 
-Excercise 4: Wildcards
+Excercise 6: Wildcards
 ----------------------
 
 For the next excercise, we will donwload more sequencing data:
@@ -172,7 +203,7 @@ Solution:
    </pre>
    </details>
 
-Excercise 5: grep and wc
+Excercise 7: grep and wc
 ------------------------
 
 Tasks: 
@@ -199,7 +230,7 @@ Solutoin:
    </pre>
    </details>
 
-Excercise 6: Streams
+Excercise 8: Streams
 --------------------
 
 Tasks: 
@@ -227,7 +258,7 @@ Solutoin:
    </pre>
    </details>
 
-Excercise 7: Tabular Data
+Excercise 9: Tabular Data
 -------------------------
 
 Tasks: 
