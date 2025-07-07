@@ -284,10 +284,8 @@ Excercise 10: Shell scripts
 --------------------
 
 Tasks: 
-
   1. Write a shell script for the following task: Count the number of lines in file that is given as a parameter
   2. Write a shell script for the following task: Search for a keyword given as the first parameter in a file that is given as the second parameter
-
 
 Solution:
 
