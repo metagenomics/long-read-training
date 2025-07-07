@@ -279,3 +279,27 @@ Solution:
    grep kinase Araport11_genes.gff | cut -f 1,3 | grep gene | cut -f 1 | sort | uniq -c
    </pre>
    </details>
+
+Excercise 10: Shell scripts
+--------------------
+
+Tasks: 
+
+  1. Write a shell script for the following task: Count the number of lines in file that is given as a parameter
+  2. Write a shell script for the following task: Search for a keyword given as the first parameter in a file that is given as the second parameter
+
+
+Solution:
+
+.. raw:: html
+
+   <details>
+   <pre>
+   #!/bin/sh
+   wc –l $1
+
+   #!/bin/sh
+   grep $1 $2
+
+   </pre>
+   </details>
