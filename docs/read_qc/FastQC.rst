@@ -15,6 +15,10 @@ The main functions of FastQC are
 * Export of results to an HTML based permanent report
 * Offline operation to allow automated generation of reports without running the interactive application
 
+Please reinstall fastqc first::
+
+  sudo apt install fastqc
+
 You can run FastQC interactively or using ht CLI, which offers the following options::
 
   fastqc --help
