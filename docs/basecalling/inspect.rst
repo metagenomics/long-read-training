@@ -15,4 +15,4 @@ So we have one fastq file in our directory. IF there are several fastq files, we
 
 In order to get the number of reads in our fastq file, we can count the number of lines and divide by 4::
 
-  cat ~/workdir/basecall_tiny/basecall_tiny.fastq | wc -l | awk '{print $1/4}'
+  zcat ~/workdir/basecall_tiny/basecall_tiny.fastq.gz | wc -l | awk '{print $1/4}'
