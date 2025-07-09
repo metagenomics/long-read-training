@@ -4,7 +4,7 @@ Basecalling with dorado
 Dorado is the newest version of the ONT basecaller, it replaced guppy which was the basecaller for quite a long time. Dorado is capable of multiple steps: demultiplexing, adapter removal, basecalling calling of modified bases (methylation), and other things. Look up the comprehensive documentation for further information.
 
 
-The command we are using for for basecalling with Guppy is::
+The command we are using for for basecalling with dorado is::
 
   dorado basecaller
   
