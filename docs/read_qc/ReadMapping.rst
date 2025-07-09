@@ -11,7 +11,7 @@ We now use minimap2 to align the ONT read sets to the reference::
 
   cd ~/workdir
   mkdir ~/workdir/map_to_ref
-  minimap2 -a -x map-ont data/Reference.fna data/basecall/basecall.fastq.gz > nanoporeToRef.sam
+  minimap2 -a -x map-ont data/Reference.fna data/basecall/basecall.fastq.gz > ~/workdir/map_to_ref/nanoporeToRef.sam
 
 For the illumina reads we will use another aligner, as this one is more suited for this kind of data. But before we can do so, we need to create an index structure on the reference::
   
